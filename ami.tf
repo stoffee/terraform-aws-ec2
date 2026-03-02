@@ -1,12 +1,7 @@
-data "aws_ami" "ubuntu20" {
-  most_recent = true
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-  }
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-  owners = ["099720109477"] # Canonical
+# HC-approved base AMI with EDR (HC-COMPUTE-011)
+module "base_ami" {
+  source = "git::ssh://git@github.com/stoffee/terraform-aws-hc-base-ami.git"
+
+  os_flavor    = "rhel-9"
+  architecture = "x86_64"
 }

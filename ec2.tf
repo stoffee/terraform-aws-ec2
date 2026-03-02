@@ -1,5 +1,5 @@
 resource "aws_instance" "education_bastion" {
-  ami                         = data.aws_ami.ubuntu20.id
+  ami                         = module.base_ami.ami_id
   subnet_id                   = module.vpc.public_subnets[0]
   key_name                    = aws_key_pair.deployer.key_name
   associate_public_ip_address = false
